@@ -6,7 +6,7 @@ build:
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroSlot Roulette BitCoin CasinoHPoker HiLo Baccarat TexasHoldEm NightClub TreasureIsland"
+    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroSlot Roulette BitCoin CasinoHPoker HiLo Baccarat TexasHoldEm TreasureIsland NightClub"
   script:
     - apk add jq
     - arr=${PRODUCT//,/ }
