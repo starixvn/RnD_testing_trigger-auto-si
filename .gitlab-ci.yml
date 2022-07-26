@@ -12,9 +12,9 @@ build:
     - arr=${PRODUCT//,/ }
     - >
       if [ "$PRODUCT" == "ALL" ] ;then
+            for i in $LIST_GAME ; do
             isRun=1
             isReady=0
-            for i in $LIST_GAME ; do
               while [[ $isReady == 0 ]] ; do
                 countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
                 echo "current job running ${countStatus}"
