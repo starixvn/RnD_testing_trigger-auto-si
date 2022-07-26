@@ -11,31 +11,27 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
-      for i in $LIST_GAME ; do
-        listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
-        for g in $arr ; do
-            product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
-            if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
-            then
-                isRun=1
-                isReady=0
-                while [[ $isReady == 0 ]] ; do
-                  countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
-                  echo "$countStatus"
-                  if [ $countStatus -lt 3 ] ;
-                  then
-                    isReady=1
-                    echo "$i"
-                    curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
-                    sleep 10
-                  else
-                    sleep 20
-                  fi
-                  sleep 5
-                done
+      if [ "$PRODUCT" == "ALL" ] ;then
+            isRun=1
+            isReady=0
+            for i in $LIST_GAME ; do
+              while [[ $isReady == 0 ]] ; do
+                countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                echo "current job running ${countStatus}"
+                if [ $countStatus -lt 3 ] ;then
+              isReady=1
+              echo "game name ${i}"
+              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+              sleep 10
+            else
+             sleep 20
             fi
-        done
-      done
+                  sleep 5
+          done
+          done
+          fi
+
+
         if [[ $isRun == 1 ]] ; then      
         iscompleted=0
         while [[ $iscompleted == 0 ]] ; do
