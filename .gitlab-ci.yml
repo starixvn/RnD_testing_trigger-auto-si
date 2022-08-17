@@ -6,12 +6,12 @@ build:
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroSlot Roulette BitCoin CasinoHPoker HiLo Baccarat TexasHoldEm NightClub TreasureIsland"
+    LIST_GAME: "1 2 22 9 24 28 4 5 6 10 27 7 3 26 23 25 35 21 38 39 42 29 47 46 31 45 48"
   script:
     - apk add jq
-    - arr=${PRODUCT//,/ }
+    - arr=${GAMEID//,/ }
     - >
-      if [ "$PRODUCT" == "ALL" ] ;then
+      if [ "$GAMEID" == "ALL" ] ;then
             for i in $LIST_GAME ; do
             isRun=1
             isReady=0
@@ -21,7 +21,7 @@ build:
                 if [ $countStatus -lt 5 ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
               sleep 10
             else
              sleep 20
@@ -31,8 +31,8 @@ build:
           done
           fi
 
-      if [ "$PRODUCT" != "ALL" ] ;then
-            for i in $PRODUCT ; do
+      if [ "$GAMEID" != "ALL" ] ;then
+            for i in $GAMEID ; do
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
@@ -41,7 +41,7 @@ build:
                 if [ $countStatus -lt 20 ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
               sleep 10
             else
              sleep 20
@@ -58,7 +58,7 @@ build:
                   echo "$countStatus1"
                   if [ $countStatus1 -lt 1 ] ; then
                   iscompleted=1
-                    if [ "$product" == "all" ] ;then
+                    if [ "$GAMEID" == "ALL" ] ;then
                         echo "run all games"
                        totalgames=$(echo -n "$LIST_GAME" | wc -w)
                       latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
