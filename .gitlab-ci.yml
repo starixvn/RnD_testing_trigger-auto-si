@@ -6,7 +6,7 @@ build:
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "1 2 22 9 24 28 4 5 6 10 27 7 3 26 23 25 35 21 38 39 42 29 47 46 31 45 48"
+    LIST_GAME: "1 2 22 9 24 28 4 6 10 27 7 3 26 23 25 35 21 38 39 42 29 47 46 31 45 48"
   script:
     - apk add jq
     - arr=${GAMEID//,/ }
