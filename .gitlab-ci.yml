@@ -38,7 +38,7 @@ build:
               while [[ $isReady == 0 ]] ; do
                 countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
                 echo "current job running ${countStatus}"
-                if [ $countStatus -lt 4 ] ;then
+                if [ $countStatus -lt 5 ] ;then
               isReady=1
               echo "game name ${i}"
               curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
