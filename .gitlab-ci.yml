@@ -6,7 +6,7 @@ build:
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "1 2 22 9 24 28 4 6 10 27 7 3 26 23 25 35 21 38 39 42 29 47 46 31 45 48"
+    LIST_GAME: "1 2 22 9 24 28 4 6 10 27 7 3 26 23 25 35 21 38 39 42 29 47 46 31 45 48 50"
   script:
     - apk add jq
     - arr=${GAMEID//,/ }
@@ -18,7 +18,7 @@ build:
               while [[ $isReady == 0 ]] ; do
                 countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
                 echo "current job running ${countStatus}"
-                if [ $countStatus -lt 5 ] ;then
+                if [ $countStatus -lt 3 ] ;then
               isReady=1
               echo "game name ${i}"
               curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
