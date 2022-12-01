@@ -16,12 +16,12 @@ build:
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
-                countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                countStatus=$(curl --header "PRIVATE-TOKEN:9as_okfsbL9DWFxkBKjt" "https://git3.nexdev.net/api/v4/projects/783/pipelines?scope=running" | jq length)
                 echo "current job running ${countStatus}"
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+              curl -X POST -F token=f74a05850e77822eae68eb6c359a55 -F ref=5-new-test-base-of-slot-game -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/783/trigger/pipeline
               sleep 2
             else
              sleep 20
@@ -36,12 +36,12 @@ build:
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
-                countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                countStatus=$(curl --header "PRIVATE-TOKEN:9as_okfsbL9DWFxkBKjt" "https://git3.nexdev.net/api/v4/projects/783/pipelines?scope=running" | jq length)
                 echo "current job running ${countStatus}"
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+              curl -X POST -F token=f74a05850e77822eae68eb6c359a55 -F ref=5-new-test-base-of-slot-game -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/783/trigger/pipeline
               sleep 2
             else
              sleep 20
@@ -54,17 +54,17 @@ build:
         if [[ $isRun == 1 ]] ; then      
         iscompleted=0
         while [[ $iscompleted == 0 ]] ; do
-                  countStatus1=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                  countStatus1=$(curl --header "PRIVATE-TOKEN:9as_okfsbL9DWFxkBKjt" "https://git3.nexdev.net/api/v4/projects/783/pipelines?scope=running" | jq length)
                   echo "$countStatus1"
                   if [ $countStatus1 -lt 1 ] ; then
                   iscompleted=1
                     if [ "$GAMEID" == "ALL" ] ;then
                         echo "run all games"
                        totalgames=$(echo -n "$LIST_GAME" | wc -w)
-                      latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
+                      latestpipeline=$(curl --header "PRIVATE-TOKEN:9as_okfsbL9DWFxkBKjt" "https://git3.nexdev.net/api/v4/projects/783/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                       else
                       totalgames=$(echo -n "$arr" | wc -w)
-                        latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
+                        latestpipeline=$(curl --header "PRIVATE-TOKEN:9as_okfsbL9DWFxkBKjt" "https://git3.nexdev.net/api/v4/projects/783/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                     fi
                 else      
                 sleep 30
