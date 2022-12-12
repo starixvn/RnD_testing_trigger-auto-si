@@ -21,7 +21,7 @@ build:
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=f74a05850e77822eae68eb6c359a55 -F ref=5-new-test-base-of-slot-game -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/783/trigger/pipeline
+              curl -X POST -F token=f74a05850e77822eae68eb6c359a55 -F ref=main -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/783/trigger/pipeline
               sleep 2
             else
              sleep 20
@@ -41,7 +41,7 @@ build:
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=f74a05850e77822eae68eb6c359a55 -F ref=5-new-test-base-of-slot-game -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/783/trigger/pipeline
+              curl -X POST -F token=f74a05850e77822eae68eb6c359a55 -F ref=main -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/783/trigger/pipeline
               sleep 2
             else
              sleep 20
